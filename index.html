@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Memories - Raksha Bandhan</title>
+    <style>
+                * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(255, 107, 107, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 85% 80%, rgba(78, 205, 196, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 40% 60%, rgba(254, 202, 87, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(150, 206, 180, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 20% 85%, rgba(255, 20, 147, 0.3) 0%, transparent 50%),
+                conic-gradient(from 180deg at 50% 50%, #ff9a9e 0deg, #fad0c4 72deg, #a8edea 144deg, #fed6e3 216deg, #d299c2 288deg, #ff9a9e 360deg);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="flowerPattern" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.5" r="2" fill="rgba(255,255,255,0.08)"/><path d="M12.5,8 Q15,10 12.5,12.5 Q10,10 12.5,8" fill="rgba(255,182,193,0.1)"/><path d="M17,12.5 Q15,15 12.5,12.5 Q15,10 17,12.5" fill="rgba(255,182,193,0.1)"/><path d="M12.5,17 Q10,15 12.5,12.5 Q15,15 12.5,17" fill="rgba(255,182,193,0.1)"/><path d="M8,12.5 Q10,10 12.5,12.5 Q10,15 8,12.5" fill="rgba(255,182,193,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23flowerPattern)"/></svg>') repeat;
+            pointer-events: none;
+            z-index: -1;
+            animation: gentleFloat 25s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="50" cy="50" r="3" fill="rgba(255,215,0,0.1)" opacity="0.8"><animate attributeName="r" values="3;6;3" dur="4s" repeatCount="indefinite"/></circle><circle cx="150" cy="50" r="2" fill="rgba(255,182,193,0.1)" opacity="0.6"><animate attributeName="r" values="2;4;2" dur="3s" repeatCount="indefinite"/></circle><circle cx="100" cy="150" r="4" fill="rgba(173,216,230,0.1)" opacity="0.7"><animate attributeName="r" values="4;7;4" dur="5s" repeatCount="indefinite"/></circle><circle cx="180" cy="130" r="2.5" fill="rgba(221,160,221,0.1)" opacity="0.5"><animate attributeName="r" values="2.5;5;2.5" dur="3.5s" repeatCount="indefinite"/></circle></svg>') repeat;
+            pointer-events: none;
+            z-index: -1;
+            animation: gentleFloat 20s ease-in-out infinite reverse;
+        }
+
+        /* Page 1 Styles */
+        .page1 {
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .page1.hidden {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+        }
+
+        h1 {
+            color: #8b0000;
+            font-size: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            text-shadow: 
+                2px 2px 4px rgba(0,0,0,0.3),
+                0 0 20px rgba(255,215,0,0.3);
+            font-weight: bold;
+            animation: fadeInDown 1s ease-out;
+            background: linear-gradient(45deg, #8b0000, #dc143c, #ff1493);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .memories-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 2rem 0;
+            padding: 3rem;
+            background: 
+                linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 100%),
+                linear-gradient(45deg, rgba(255,182,193,0.1), rgba(173,216,230,0.1), rgba(255,218,185,0.1));
+            border-radius: 35px;
+            backdrop-filter: blur(25px);
+            box-shadow: 
+                0 15px 40px rgba(0,0,0,0.15),
+                inset 0 2px 0 rgba(255,255,255,0.3),
+                inset 0 -2px 0 rgba(0,0,0,0.05);
+            border: 2px solid rgba(255,255,255,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memories-container::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, 
+                #ff6b6b 0%, 
+                #4ecdc4 12.5%, 
+                #45b7d1 25%, 
+                #96ceb4 37.5%, 
+                #feca57 50%, 
+                #ff6b6b 62.5%, 
+                #fd79a8 75%, 
+                #fdcb6e 87.5%, 
+                #ff6b6b 100%);
+            border-radius: 37px;
+            z-index: -1;
+            animation: borderFlow 6s linear infinite;
+        }
+
+        .photo-frame {
+            width: 240px;
+            height: 240px;
+            border: 8px solid #fff;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 
+                0 12px 30px rgba(0,0,0,0.25),
+                inset 0 2px 0 rgba(255,255,255,0.4),
+                0 0 20px rgba(255,215,0,0.1);
+            transform: rotate(-2deg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 17px;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-frame:nth-child(even) {
+            transform: rotate(2deg);
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+
+        .photo-frame:nth-child(3n) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.15) rotate(0deg);
+            z-index: 10;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.3),
+                0 0 30px rgba(255,215,0,0.2);
+        }
+
+        .photo-frame:hover img {
+            transform: scale(1.05);
+        }
+
+        .surprise-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 25%, #45b7d1 50%, #96ceb4 75%, #feca57 100%);
+            color: white;
+            padding: 18px 36px;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 
+                0 8px 25px rgba(0,0,0,0.3),
+                inset 0 2px 0 rgba(255,255,255,0.3);
+            transition: all 0.4s ease;
+            margin-top: 2rem;
+            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .surprise-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .surprise-btn:hover::before {
+            left: 100%;
+        }
+
+        .surprise-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 12px 35px rgba(0,0,0,0.4),
+                inset 0 2px 0 rgba(255,255,255,0.4);
+        }
+
+        /* Page 2 Styles */
+        .page2 {
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 107, 107, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 75% 75%, rgba(78, 205, 196, 0.4) 0%, transparent 60%),
+                radial-gradient(circle at 50% 10%, rgba(254, 202, 87, 0.3) 0%, transparent 70%),
+                radial-gradient(circle at 10% 60%, rgba(255, 20, 147, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 90% 40%, rgba(150, 206, 180, 0.3) 0%, transparent 50%),
+                conic-gradient(from 45deg at 50% 50%, #ff9a9e 0deg, #fad0c4 60deg, #a8edea 120deg, #fed6e3 180deg, #d299c2 240deg, #ffecd2 300deg, #ff9a9e 360deg);
+        }
+
+        .page2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><g opacity="0.05"><path d="M100,50 Q125,75 100,100 Q75,75 100,50" fill="rgb(255,182,193)"/><path d="M150,100 Q125,125 100,100 Q125,75 150,100" fill="rgb(173,216,230)"/><path d="M100,150 Q75,125 100,100 Q125,125 100,150" fill="rgb(255,218,185)"/><path d="M50,100 Q75,75 100,100 Q75,125 50,100" fill="rgb(221,160,221)"/></g></svg>') repeat;
+            animation: gentleFloat 18s ease-in-out infinite reverse;
+            pointer-events: none;
+        }
+
+        .page2.show {
+            display: flex;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .surprise-message {
+            text-align: center;
+            color: #8b0000;
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 
+                3px 3px 6px rgba(0,0,0,0.3),
+                0 0 30px rgba(255,215,0,0.4);
+            margin-bottom: 2rem;
+            animation: bounceIn 1.5s ease-out;
+            line-height: 1.2;
+            background: linear-gradient(45deg, #8b0000, #dc143c, #ff1493, #ff6b6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sister-name {
+            color: #ff1493;
+            font-size: 5rem;
+            animation: heartBeat 2s infinite;
+            display: block;
+            margin-top: 1rem;
+            background: linear-gradient(45deg, #ff1493, #ff69b4, #ffd700, #ff69b4, #ff1493);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Beautiful Circle Image Container */
+        .image-circle-container {
+            position: relative;
+            margin: 2rem 0;
+            filter: drop-shadow(0 15px 35px rgba(0,0,0,0.25));
+        }
+
+        .image-circle {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            animation: gentleRotate 20s linear infinite;
+        }
+
+        .image-circle-border {
+            width: 280px;
+            height: 280px;
+            border: 8px solid transparent;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #fd79a8, #fdcb6e, #ff6b6b);
+            background-clip: border-box;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: borderPulse 4s ease-in-out infinite;
+            box-shadow: 
+                0 0 40px rgba(255,215,0,0.3),
+                inset 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        .image-circle-inner {
+            width: 240px;
+            height: 240px;
+            background: 
+                radial-gradient(circle, rgba(255,255,255,0.95), rgba(255,248,220,0.9)),
+                linear-gradient(45deg, rgba(255,182,193,0.1), rgba(173,216,230,0.1));
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                inset 0 0 30px rgba(255,215,0,0.2),
+                0 0 50px rgba(255,215,0,0.15);
+            border: 3px solid rgba(255,255,255,0.6);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-circle-inner img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .image-circle:hover .image-circle-inner img {
+            transform: scale(1.05);
+        }
+
+        .image-decorative-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .decorative-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: decorativePulse 3s ease-in-out infinite;
+        }
+
+        .decorative-dot:nth-child(1) {
+            top: 10%;
+            left: 50%;
+            background: radial-gradient(circle, #ffd700, #ff8c00);
+            animation-delay: 0s;
+            transform: translateX(-50%);
+        }
+
+        .decorative-dot:nth-child(2) {
+            top: 50%;
+            right: 10%;
+            background: radial-gradient(circle, #ff1493, #dc143c);
+            animation-delay: 0.5s;
+            transform: translateY(-50%);
+        }
+
+        .decorative-dot:nth-child(3) {
+            bottom: 10%;
+            left: 50%;
+            background: radial-gradient(circle, #4ecdc4, #2980b9);
+            animation-delay: 1s;
+            transform: translateX(-50%);
+        }
+
+        .decorative-dot:nth-child(4) {
+            top: 50%;
+            left: 10%;
+            background: radial-gradient(circle, #96ceb4, #27ae60);
+            animation-delay: 1.5s;
+            transform: translateY(-50%);
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            color: #ff1493;
+            animation: heartFloat 6s ease-in-out infinite;
+            opacity: 0.8;
+            text-shadow: 0 0 10px rgba(255,20,147,0.5);
+        }
+
+        .heart:nth-child(1) { 
+            left: 10%; 
+            animation-delay: 0s; 
+            font-size: 1.8rem;
+        }
+        .heart:nth-child(2) { 
+            left: 20%; 
+            animation-delay: 1.5s; 
+            font-size: 2.2rem;
+        }
+        .heart:nth-child(3) { 
+            right: 20%; 
+            animation-delay: 3s; 
+            font-size: 1.9rem;
+        }
+        .heart:nth-child(4) { 
+            right: 10%; 
+            animation-delay: 4.5s; 
+            font-size: 2.1rem;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: 
+                linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.2)),
+                linear-gradient(45deg, rgba(255,182,193,0.1), rgba(173,216,230,0.1));
+            border: 2px solid #8b0000;
+            color: #8b0000;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 5px 15px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #8b0000, #dc143c);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 25px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes gentleRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 40px rgba(255,215,0,0.3), inset 0 0 20px rgba(255,255,255,0.2);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.05);
+                box-shadow: 0 0 60px rgba(255,215,0,0.5), inset 0 0 30px rgba(255,255,255,0.3);
+            }
+        }
+
+        @keyframes borderFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes heartFloat {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            25% { transform: translateY(-15px) translateX(8px) rotate(5deg); }
+            50% { transform: translateY(-8px) translateX(-5px) rotate(-3deg); }
+            75% { transform: translateY(-20px) translateX(3px) rotate(2deg); }
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-8px) translateX(3px); }
+            50% { transform: translateY(-4px) translateX(-2px); }
+            75% { transform: translateY(-12px) translateX(1px); }
+        }
+
+        @keyframes decorativePulse {
+            0%, 100% { 
+                transform: translateX(-50%) translateY(-50%) scale(1);
+                opacity: 0.7;
+            }
+            50% { 
+                transform: translateX(-50%) translateY(-50%) scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .memories-container {
+                max-width: 1200px;
+                padding: 2.5rem;
+            }
+            
+            .photo-frame {
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .memories-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+                padding: 2rem;
+                max-width: 90%;
+            }
+            
+            .photo-frame {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .memories-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+                padding: 2rem;
+                max-width: 95%;
+            }
+            
+            .photo-frame {
+                width: 180px;
+                height: 180px;
+                font-size: 0.9rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .surprise-message {
+                font-size: 2.5rem;
+            }
+            
+            .sister-name {
+                font-size: 3rem;
+            }
+
+            .image-circle {
+                width: 250px;
+                height: 250px;
+            }
+
+            .image-circle-border {
+                width: 230px;
+                height: 230px;
+            }
+
+            .image-circle-inner {
+                width: 190px;
+                height: 190px;
+            }
+
+            .image-circle-inner img {
+                width: 170px;
+                height: 170px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .memories-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .photo-frame {
+                width: 140px;
+                height: 140px;
+                font-size: 0.8rem;
+            }
+
+            .image-circle {
+                width: 200px;
+                height: 200px;
+            }
+
+            .image-circle-border {
+                width: 180px;
+                height: 180px;
+            }
+
+            .image-circle-inner {
+                width: 150px;
+                height: 150px;
+            }
+
+            .image-circle-inner img {
+                width: 130px;
+                height: 130px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Memories -->
+    <div class="page1" id="page1">
+        <h1>Our Beautiful Memories</h1>
+        
+        <div class="memories-container">
+            <div class="photo-frame">
+                <img src="1.jpeg" alt="Memory 1">
+            </div>
+            <div class="photo-frame">
+                <img src="3.jpeg" alt="Memory 2">
+            </div>
+            <div class="photo-frame">
+                <img src="4.jpeg" alt="Memory 3">
+            </div>
+            <div class="photo-frame">
+                <img src="5.jpeg" alt="Memory 4">
+            </div>
+            <div class="photo-frame">
+                <img src="6.jpeg" alt="Memory 5">
+            </div>
+            <div class="photo-frame">
+                <img src="7.jpeg" alt="Memory 6">
+            </div>
+            <div class="photo-frame">
+                <img src="8.jpeg" alt="Memory 7">
+            </div>
+            <div class="photo-frame">
+                <img src="9.jpeg" alt="Memory 8">
+            </div>
+            <div class="photo-frame">
+                <img src="WhatsApp Image 2025-08-08 at 11.01.49 PM.jpeg" alt="Memory 9">
+            </div>
+            <div class="photo-frame">
+                <img src="11.jpeg" alt="Memory 10">
+            </div>
+        </div>
+        
+        <button class="surprise-btn" onclick="showSurprise()">Open for Surprise! 🎁</button>
+    </div>
+
+    <!-- Page 2: Surprise -->
+    <div class="page2" id="page2">
+        <button class="back-btn" onclick="goBack()">← Back to Memories</button>
+        
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💗</div>
+        <div class="heart">💝</div>
+        
+        <div class="surprise-message">
+            Happy Raksha Bandhan To My 
+            <span class="sister-name">Best Sis Potti!</span>
+        </div>
+        
+        <div class="image-circle-container">
+            <div class="image-circle">
+                <div class="image-circle-border"></div>
+                <div class="image-circle-inner">
+                    <img src="2.jpeg" alt="Beautiful Sister" style="display: block;">
+                </div>
+                <div class="image-decorative-elements">
+                    <div class="decorative-dot"></div>
+                    <div class="decorative-dot"></div>
+                    <div class="decorative-dot"></div>
+                    <div class="decorative-dot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSurprise() {
+            const page1 = document.getElementById('page1');
+            const page2 = document.getElementById('page2');
+            
+            page1.classList.add('hidden');
+            setTimeout(() => {
+                page2.classList.add('show');
+            }, 500);
+        }
+
+        function goBack() {
+            const page1 = document.getElementById('page1');
+            const page2 = document.getElementById('page2');
+            
+            page2.classList.remove('show');
+            setTimeout(() => {
+                page1.classList.remove('hidden');
+            }, 300);
+        }
+
+        // Enhanced sparkle effects
+        function createSparkle() {
+            const sparkles = ['✨', '⭐', '💫', '🌟'];
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = sparkles[Math.floor(Math.random() * sparkles.length)];
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            sparkle.style.fontSize = Math.random() * 25 + 15 + 'px';
+            sparkle.style.opacity = '0.8';
+            sparkle.style.animation = 'gentleFloat 4s ease-in-out infinite';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '1000';
+            sparkle.style.textShadow = '0 0 10px rgba(255,215,0,0.8)';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 4000);
+        }
+
+        // Create sparkles periodically
+        setInterval(createSparkle, 1500);
+
+        // Add floating petals effect
+        function createPetal() {
+            const petals = ['🌸', '🌺', '🌼', '🌻', '💮'];
+            const petal = document.createElement('div');
+            petal.innerHTML = petals[Math.floor(Math.random() * petals.length)];
+            petal.style.position = 'fixed';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.top = '-50px';
+            petal.style.fontSize = Math.random() * 20 + 20 + 'px';
+            petal.style.opacity = '0.6';
+            petal.style.animation = `gentleFloat ${Math.random() * 3 + 6}s ease-in-out infinite`;
+            petal.style.pointerEvents = 'none';
+            petal.style.zIndex = '999';
+            petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+            
+            document.body.appendChild(petal);
+            
+            setTimeout(() => {
+                petal.remove();
+            }, 9000);
+        }
+
+        // Create petals periodically
+        setInterval(createPetal, 3000);
+    </script>
+</body>
+</html>
